@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  * @author User
@@ -31,6 +32,9 @@ public class Company {
 	@JoinTable(name = "company_employee", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
 	private Set<Employee> employees = new HashSet<>();
 
+	@ManyToOne
+	private Location location;
+	
 	public Company() {
 	}
 
@@ -92,5 +96,14 @@ public class Company {
 	public String toString() {
 		return "Company [id=" + id + ", companyName=" + companyName + ", employees=" + employees + "]";
 	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
 
 }
